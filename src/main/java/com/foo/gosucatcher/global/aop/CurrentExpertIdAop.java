@@ -49,19 +49,20 @@ public class CurrentExpertIdAop {
 	}
 
 	private Object[] modifyArgsWithExpertId(Long expertId, ProceedingJoinPoint proceedingJoinPoint) {
-		Object[] parameters = proceedingJoinPoint.getArgs();
+	    Object[] parameters = proceedingJoinPoint.getArgs();
 
-		MethodSignature signature = (MethodSignature)proceedingJoinPoint.getSignature();
-		Method method = signature.getMethod();
-		Parameter[] methodParameters = method.getParameters();
+	    MethodSignature signature = (MethodSignature) proceedingJoinPoint.getSignature();
+	    Method method = signature.getMethod();
+	    Parameter[] methodParameters = method.getParameters();
 
-		for (int i = 0; i < methodParameters.length; i++) {
-			String parameterName = methodParameters[i].getName();
-			if (parameterName.equals(EXPERT_ID)) {
-				parameters[i] = expertId;
-			}
-		}
+	    for (int i = 0; i < methodParameters.length; i++) {
+	        if (methodParameters[i].getType().equals(Long.class)) {  // Long 타입 파라미터를 찾음
+	            parameters[i] = expertId;
+	            break;  // 첫 번째 Long 타입 파라미터를 찾았으므로 반복문을 종료
+	        }
+	    }
 
-		return parameters;
+	    return parameters;
 	}
+
 }

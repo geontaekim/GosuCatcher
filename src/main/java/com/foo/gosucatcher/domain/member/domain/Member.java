@@ -30,7 +30,9 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
+@ToString
 @Getter
 @Entity
 @Where(clause = "is_deleted = false")
@@ -170,5 +172,16 @@ public class Member extends BaseEntity implements UserDetails {
 		} else if (role.equals(Roles.ROLE_EXPERT)) {
 			role = Roles.ROLE_USER;
 		}
+	}
+	@Override
+	public String toString() {
+	    return "Member{" +
+	            "id=" + id +
+	            ", email='" + email + '\'' +
+	            ", name='" + name + '\'' +
+	            ", phoneNumber='" + phoneNumber + '\'' +
+	            ", role=" + role +
+	            ", isDeleted=" + isDeleted +
+	            '}';
 	}
 }

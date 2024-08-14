@@ -187,8 +187,12 @@ public class ExpertController {
 
 		@Parameter(description = "정렬 방식", example = "rating,desc")
 		@PageableDefault(sort = {"reviewCount"}, direction = Sort.Direction.DESC) Pageable pageable) {
+		
 		SortType.validateSortColumns(pageable.getSort());
 
+		
+		
+		
 		return ResponseEntity.ok(expertService.findExperts(subItem, location, pageable));
 	}
 }

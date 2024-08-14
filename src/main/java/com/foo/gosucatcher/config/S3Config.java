@@ -16,6 +16,9 @@ import lombok.NoArgsConstructor;
 @Configuration
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class S3Config {
+	
+	
+	/*
 	@Value("${cloud.aws.credentials.accessKey}")
 	private String accessKey;
 
@@ -24,7 +27,12 @@ public class S3Config {
 
 	@Value("${cloud.aws.region.static}")
 	private String region;
-
+	*/
+	
+	private final String accessKey = "YOUR_LOCAL_ACCESS_KEY";
+    private final String secretKey = "YOUR_LOCAL_SECRET_KEY";
+    private final String region = "YOUR_LOCAL_REGION";
+    /*
 	@Bean
 	public AmazonS3 amazonS3() {
 		AWSCredentials credentials = new BasicAWSCredentials(accessKey, secretKey);
@@ -35,5 +43,6 @@ public class S3Config {
 			.withRegion(region)
 			.build();
 	}
+	*/
 
 }

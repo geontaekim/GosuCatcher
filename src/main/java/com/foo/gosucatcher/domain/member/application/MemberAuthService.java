@@ -133,12 +133,16 @@ public class MemberAuthService {
 		String refreshToken = jwtTokenProvider.createRefreshToken(member, expert);
 
 		member.refreshToken(refreshToken);
+		
+		Long memberId = jwtTokenProvider.getMemberIdFromToken(accessToken);
 
 		log.info("accessToken 생성 완료 : {}", accessToken);
 		log.info("refreshToken 생성 완료 : {}", refreshToken);
 
 		return MemberCertifiedResponse.from(accessToken, refreshToken);
 	}
+	
+	
 
 	private JwtReissueResponse createJwtReissueResponse(Member member, Expert expert) {
 		String reissuedAccessToken = jwtTokenProvider.createAccessToken(member, expert);

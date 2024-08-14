@@ -50,19 +50,20 @@ public class CurrentMemberEmailAop {
 	}
 
 	private Object[] modifyArgsWithMemberEmail(String memberEmail, ProceedingJoinPoint proceedingJoinPoint) {
-		Object[] parameters = proceedingJoinPoint.getArgs();
+	    Object[] parameters = proceedingJoinPoint.getArgs();
 
-		MethodSignature signature = (MethodSignature)proceedingJoinPoint.getSignature();
-		Method method = signature.getMethod();
-		Parameter[] methodParameters = method.getParameters();
+	    MethodSignature signature = (MethodSignature) proceedingJoinPoint.getSignature();
+	    Method method = signature.getMethod();
+	    Parameter[] methodParameters = method.getParameters();
 
-		for (int i = 0; i < methodParameters.length; i++) {
-			String parameterName = methodParameters[i].getName();
-			if (parameterName.equals(MEMBER_ID)) {
-				parameters[i] = memberEmail;
-			}
-		}
+	    for (int i = 0; i < methodParameters.length; i++) {
+	        if (methodParameters[i].getType().equals(String.class)) {  // String 타입 파라미터를 찾음
+	            parameters[i] = memberEmail;
+	            break;  // 첫 번째 String 타입 파라미터를 찾았으므로 반복문을 종료
+	        }
+	    }
 
-		return parameters;
+	    return parameters;
 	}
+
 }

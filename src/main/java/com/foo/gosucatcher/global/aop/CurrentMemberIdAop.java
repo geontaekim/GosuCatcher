@@ -48,19 +48,18 @@ public class CurrentMemberIdAop {
 	}
 
 	private Object[] modifyArgsWithMemberId(Long memberId, ProceedingJoinPoint proceedingJoinPoint) {
-		Object[] parameters = proceedingJoinPoint.getArgs();
+	    Object[] parameters = proceedingJoinPoint.getArgs();
 
-		MethodSignature signature = (MethodSignature)proceedingJoinPoint.getSignature();
-		Method method = signature.getMethod();
-		Parameter[] methodParameters = method.getParameters();
+	    MethodSignature signature = (MethodSignature) proceedingJoinPoint.getSignature();
+	    Method method = signature.getMethod();
+	    Parameter[] methodParameters = method.getParameters();
 
-		for (int i = 0; i < methodParameters.length; i++) {
-			String parameterName = methodParameters[i].getName();
-			if (parameterName.equals(MEMBER_ID)) {
-				parameters[i] = memberId;
-			}
-		}
+	    for (int i = 0; i < methodParameters.length; i++) {
+	        if (methodParameters[i].getType().equals(Long.class)) {  // Long 타입 파라미터를 찾음
+	            parameters[i] = memberId;
+	        }
+	    }
 
-		return parameters;
+	    return parameters;
 	}
 }

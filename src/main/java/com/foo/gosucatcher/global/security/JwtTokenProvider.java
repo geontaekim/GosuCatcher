@@ -88,8 +88,19 @@ public class JwtTokenProvider {
 	}
 
 	public String createAccessToken(Member member, Expert expert) {
+		System.out.print(member.toString());
 		return getToken(member, expert, ACCESS_TOKEN_EXPIRED_TIME, ACCESS_TOKEN_SECRET_KEY);
 	}
+	
+	// 토큰에서 memberId 추출
+    public Long getMemberIdFromToken(String token) {
+        Claims claims = Jwts.parser()
+                .setSigningKey(ACCESS_TOKEN_SECRET_KEY)
+                .parseClaimsJws(token)
+                .getBody();
+
+        return claims.get("memberId", Long.class); // "memberId"를 Long 타입으로 가져오기
+    }
 
 	public String createRefreshToken(Member member, Expert expert) {
 		return getToken(member, expert, REFRESH_TOKEN_EXPIRED_TIME, REFRESH_TOKEN_SECRET_KEY);

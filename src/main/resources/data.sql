@@ -71,36 +71,28 @@ VALUES (1, '화장실 청소', '화장실을 청소하는 서비스입니다. �
        (9, '영상 편집', '영상 편집 서비스를 제공합니다. 영상 편집 및 후속 처리 작업을 수행합니다.', false);
 
 -- members
-INSERT INTO members (name, password, email, phone_number, filename, is_deleted, role, refresh_token)
-VALUES ('에프푸', '$2a$10$aTX3.YyGqC2Lxv0Rwy77FeDn7s8ffHbn6gj4Ty1Wg741WO/P9RvQa', 'f@gmail.com', '+12345678940',
-        'https://gosu-catcher.s3.ap-northeast-2.amazonaws.com/23/09/25/e783445c-7920-4a6b-86ae-cfd22a45ef16', false,
-        'ROLE_USER',
-        'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJHb3N1Q2F0Y2hlciIsIm1lbWJlcklkIjoxLCJtZW1iZXJFbWFpbCI6ImZAZ21haWwuY29tIiwiZXhwZXJ0SWQiOjEsImlhdCI6MTY5NTU2OTI5MywiaXNzIjoiR29zdUNhdGNoZXItc2VydmVyIiwiZXhwIjoxNjk4MTYxMjkzfQ.7uzvsZ40A0EBCM8nqf7YbZsYbqZCBZqK7zrUYottqbI'),
-       ('스펜서', '$2a$10$KuBah9e6cH3U7rgjXQRf/.dNQLfR4JVHGmbyzuVcW4SmfZhg2zxC6', 'spencer@gmail.com', '+12345678940',
-        'https://gosu-catcher.s3.ap-northeast-2.amazonaws.com/23/09/25/b86cfd5d-10f2-4e89-8997-907b20995345', false,
-        'ROLE_USER',
-        'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJHb3N1Q2F0Y2hlciIsIm1lbWJlcklkIjoyLCJtZW1iZXJFbWFpbCI6InNwZW5jZXJAZ21haWwuY29tIiwiZXhwZXJ0SWQiOjIsImlhdCI6MTY5NTU3MDE0OSwiaXNzIjoiR29zdUNhdGNoZXItc2VydmVyIiwiZXhwIjoxNjk4MTYyMTQ5fQ.N-s1_0cYegjyJ_r8c1V0jzE3REcSzj6oVKn3xnBZDTE');
+INSERT INTO members (name, password, email, phone_number,filename,is_deleted, role, refresh_token)
+VALUES 
+('에프푸', '$2a$10$aTX3.YyGqC2Lxv0Rwy77FeDn7s8ffHbn6gj4Ty1Wg741WO/P9RvQa', 'f@gmail.com', '+12345678940', 'https://gosu-catcher.s3.ap-northeast-2.amazonaws.com/23/09/25/e783445c-7920-4a6b-86ae-cfd22a45ef16',false, 'ROLE_USER', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJHb3N1Q2F0Y2hlciIsIm1lbWJlcklkIjoxLCJtZW1iZXJFbWFpbCI6ImZAZ21haWwuY29tIiwiZXhwZXJ0SWQiOjEsImlhdCI6MTY5NTU2OTI5MywiaXNzIjoiR29zdUNhdGNoZXItc2VydmVyIiwiZXhwIjoxNjk4MTYxMjkzfQ.7uzvsZ40A0EBCM8nqf7YbZsYbqZCBZqK7zrUYottqbI'),
+('스펜서', '$2a$10$KuBah9e6cH3U7rgjXQRf/.dNQLfR4JVHGmbyzuVcW4SmfZhg2zxC6', 'spencer@gmail.com', '+12345678940', 'https://gosu-catcher.s3.ap-northeast-2.amazonaws.com/23/09/25/b86cfd5d-10f2-4e89-8997-907b20995345', false, 'ROLE_USER', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJHb3N1Q2F0Y2hlciIsIm1lbWJlcklkIjoyLCJtZW1iZXJFbWFpbCI6InNwZW5jZXJAZ21haWwuY29tIiwiZXhwZXJ0SWQiOjIsImlhdCI6MTY5NTU3MDE0OSwiaXNzIjoiR29zdUNhdGNoZXItc2VydmVyIiwiZXhwIjoxNjk4MTYyMTQ5fQ.N-s1_0cYegjyJ_r8c1V0jzE3REcSzj6oVKn3xnBZDTE');
 
 -- experts
-INSERT INTO experts (member_id, store_name, location, max_travel_distance, description, is_auto, rating, review_count,
-                     is_deleted)
-VALUES (1, '에프의 코딩학원', '서울특별시 강남구', 100, '내 성장의 눈높이에 맞춘 전문적인 교육을 경험할 수 있는 시간
-개발자 커리어는 에프와 유료로 시작하세요.', false, 5.0, 1, false),
-       (2, '데브코스', '서울특별시 강남구', 10, '웰컴투 데브코스', false, 4.0, 0, false);
+INSERT INTO experts (member_id, store_name, location, max_travel_distance, description, is_auto, rating, review_count, is_deleted)
+VALUES 
+(1, '에프의 코딩학원', '서울특별시 강남구', 100, '내 성장의 눈높이에 맞춘 전문적인 교육을 경험할 수 있는 시간 
+개발자 커리어는 에프와 유료로 시작하세요.', false, 5.0, 1, false), 
+(2, '데브코스', '서울특별시 강남구', 10, '웰컴투 데브코스', false, 4.0, 0, false);
 
 -- expert_images
-INSERT INTO expert_images(filename, expert_id)
-VALUES ('https://gosu-catcher.s3.ap-northeast-2.amazonaws.com/23/09/25/596cad97-551e-45fa-9bac-949dd688a958', 1),
-       ('https://gosu-catcher.s3.ap-northeast-2.amazonaws.com/23/09/25/70e8e607-f3a6-491a-9840-57e52aeda46c', 1),
-       ('https://gosu-catcher.s3.ap-northeast-2.amazonaws.com/23/09/25/8fea975d-20b9-4e1a-8087-9e69dab26f0a', 2);
+INSERT INTO expert_images(filename,expert_id)
+VALUES('https://gosu-catcher.s3.ap-northeast-2.amazonaws.com/23/09/25/596cad97-551e-45fa-9bac-949dd688a958',1),
+('https://gosu-catcher.s3.ap-northeast-2.amazonaws.com/23/09/25/70e8e607-f3a6-491a-9840-57e52aeda46c',1),
+('https://gosu-catcher.s3.ap-northeast-2.amazonaws.com/23/09/25/8fea975d-20b9-4e1a-8087-9e69dab26f0a',2);
 
 -- expert_items
-INSERT INTO expert_items(expert_id, sub_item_id)
-VALUES (1, 20),
-       (1, 21),
-       (1, 22),
-       (2, 23);
+INSERT INTO expert_items(expert_id,sub_item_id)
+VALUES(1,20),(1,21),(1,22),(2,23);
 
 -- reviews
-INSERT INTO reviews(expert_id, writer_id, sub_item_id, reply_id, content, rating, is_deleted)
-VALUES (1, 2, 20, null, '아주 좋아요~~!', 5.0, false);
+INSERT INTO reviews(expert_id,writer_id,sub_item_id,reply_id,content,rating,is_deleted)
+VALUES(1,2,20,null,'아주 좋아요~~!', 5.0, false);

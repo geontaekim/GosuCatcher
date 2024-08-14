@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration >
+	<!-- 로그 경로 변수 선언 -->
+	<!-- <property name="LOG_DIR" value="${user.home}/logs/app" /> -->
+	<!-- 
+	<property name="LOG_DIR" value=".././logs" />
+	<property name="LOG_PATH" value="${LOG_DIR}/app.log" />
+	-->
+	<property name="LOG_DIR" value="/tmp" />
+	<property name="LOG_PATH" value="${LOG_DIR}/spring.log" />
+
+	<!-- 로그 레벨 1 Trace 사용자 정의 레벨을 포함한 모든 레벨. 2 DEBUG debug을 위한 용도로, 일반 정보를 상세하게 
+		출력합니다. 3 INFO 일반적인 데이터를 출력합니다. 4 WARN 경고성 메시지로, 에러가 아닌 처리 가능한 문제를 출력 합니다. 
+		5 ERROR 일반적인 에러로 처리가 반드시 필요로 하는 문제를 출력 합니다. //6 FATAL 시스템에 심각한 문제를 일이킬 수 
+		있는 문제를 출력합니다. 7 OFF 로깅을 해제 -->
+
+	<logger name="jdbc" level="OFF" />
+	<logger name="jdbc.connection" level="OFF" />
+	<logger name="jdbc.sqlonly" level="INFO" />
+	<logger name="jdbc.sqltiming" level="OFF" />
+	<logger name="jdbc.audit" level="OFF" />
+	<logger name="jdbc.resultset" level="OFF" />
+	<logger name="jdbc.resultsettable" level="OFF">
+		<!-- <appender-ref ref="console-infolog" /> -->
+	</logger>
+	<logger name="jdbc.resultsettable" level="OFF" />
+	<logger name="com.zaxxer.hikari" level="OFF" />
+	<logger name="com.zaxxer.hikari.HikariConfig" level="OFF" />
+
+
+	<!-- use Spring default values -->
+	<include
+		resource="org/springframework/boot/logging/logback/defaults.xml" />
+	<!-- 콘솔 출력 -->
+	<appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+<!-- 			<pattern>${CONSOLE_LOG_PATTERN}</pattern> -->
+			<pattern>%green(%d{yyyy-MM-dd HH:mm:ss.SSS}) %magenta([%thread]) %highlight(%5level) %cyan(%logger) - %yellow(%msg%n)</pattern>
+		</encoder>
+	</appender>
+
+
+
+	<!-- Rolling File Appender -->
+	<appender name="ROLLING_FILE"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${LOG_PATH}</file><!-- 파일 경로 -->
+		<!-- 출력패턴 -->
+		<encoder>
+			<pattern>%green(%d{yyyy-MM-dd HH:mm:ss.SSS}) %highlight([%5level]) : %yellow(%msg%n)</pattern>
+		</encoder>
+
+		<!-- Rolling 정책 -->
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!-- .gz,.zip 등을 넣으면 자동으로 일자별 로그파일 압축 -->
+			<fileNamePattern>${LOG_DIR}/app_%d{yyyy-MM-dd}_%i.log.gz
+			</fileNamePattern>
+			<timeBasedFileNamingAndTriggeringPolicy
+				class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<!-- 파일당 최고 용량 10MB -->
+				<maxFileSize>10MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+
+			<!-- 일자별 로그파일 최대 보관주기(일단위) 만약 해당 설정일 이상된 파일은 자동으로 제거 -->
+			<maxHistory>30</maxHistory>
+		</rollingPolicy>
+	</appender>
+
+	<root level="debug">
+		<!-- 콘솔 출력 -->
+		<appender-ref ref="CONSOLE" />   <!-- Console에 로그를 출력하고자 할 때 사용 -->
+		<!-- 파일 출력 -->
+		<appender-ref ref="ROLLING_FILE" />  <!-- File로 로그를 남기고자 할 때 사용 -->
+	</root>
+</configuration> 
